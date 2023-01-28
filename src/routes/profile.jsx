@@ -4,7 +4,6 @@ import { Button, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios'
 import { useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom'
 
 
 export default function Profile(props) {
@@ -17,7 +16,7 @@ export default function Profile(props) {
   const [id, setid] = useState("")
   useEffect(() => {
     axios({
-      url: 'http://localhost:3003/getuser/2',
+      url: window.$api + '/get/9',
       method: 'get'
 
     }).then(res => {
@@ -32,20 +31,29 @@ export default function Profile(props) {
     })
   }, [])
 
-  const handleLogin = () => {
-    axios({
-      url: "http://localhost:3003/login",
-      method: 'post',
-      data: {
-        email: "tengxiong@gmail.com",
-        password: 120495
+  // const handleLogin = () => {
+  //   axios({
+  //     url: "http://localhost:3000/login",
+  //     method: 'post',
+  //     data: {
+  //       email: "tengxiong@gmail.com",
+  //       password: 12345677
 
-      }
+  //     }
 
-    }).then(res => {
-      console.log(res.data)
-    })
-  }
+  //   }).then(res => {
+  //     console.log(res.data)
+  //     if (res.data.status === 200) {
+  //         props.setisLoggedln(true)
+  //         navigate('/')
+  //     } else {
+  //         console.log("failed")
+  //     }
+
+  //    .then(res => {
+  //     console.log(res.data)
+  //    })
+  // }
 
 
   const handleChangeUsername = (e) => {
@@ -70,7 +78,35 @@ export default function Profile(props) {
   const handleChangeTitle = (e) => {
     settitle(e.target.value)
   }
- 
+
+  const handleUpdataUser = () => {
+    toast.success('🦄 Wow so easy!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    axios({
+      url: window.$api + '/updateuser', // url backend
+      method: 'put',
+      data: {
+        username: username, // right is backend from database
+        firsname: firsname,
+        lastname: lastname,
+        email: email,  // left is backend create new
+        password: password,
+        title: title,
+        id: id,
+      }
+    }).then(res => {
+      console.log(res.data)
+    })
+  }
   if (props.isLoggedIn) {
 
     return (
@@ -155,18 +191,14 @@ export default function Profile(props) {
         </Grid>
         <Button onClick={handleUpdataUser} variant='outlined'> update</Button>
       </Box>
-
-
-
-
     )
   }
-  else{
-    return(
+  else {
+    return (
       <div>
-    please log in
-    <Button variant='outlined' onClick={handleLogin}>login</Button>
-    </div>
+        {/* <Navigate to='/login'/> */}
+        404: NOT_FOUND
+      </div>
     )
   }
 }

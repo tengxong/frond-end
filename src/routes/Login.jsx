@@ -14,7 +14,7 @@ export default function Login(props) {
 
     //   useEffect(() => {
     //     axios({
-    //       url: 'http://localhost:3002/login',
+    //       url: 'http://localhost:3000/login',
     //       method: 'post'
 
     //     }).then(res => {
@@ -28,7 +28,7 @@ export default function Login(props) {
 
     const handleLogin = () => {
         axios({
-            url: "http://localhost:3003/login",
+            url: "http://localhost:3000/login",
             method: 'post',
             data: {
                 email: email,
@@ -56,7 +56,7 @@ export default function Login(props) {
     const handleChangePassword = (e) => {
         setpassword(e.target.value)
     }
-    if (!props.isLoggedln) {
+    if (!props.isLoggedIn) {
         return (
             <Box>
                 {/* <Box display='flex'>

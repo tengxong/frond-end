@@ -11,7 +11,7 @@ const [isLoggedIn,setisLoggedln] = React.useState(false)
 
   useEffect(() =>{
     axios({
-          url:"http://localhost:3003/isloggedIn",
+          url:"http://localhost:3000/isloggedIn",
           method:'post',
           withCredentials: true
     }).then(res =>{
@@ -26,9 +26,8 @@ const [isLoggedIn,setisLoggedln] = React.useState(false)
         <div>
             <BrowserRouter>
                 <Routes>
-                    {/* <Route path='/' element={<App/>}/> */}
-                    <Route path='/login' element={<Login isLoggendIn= {isLoggedIn} setisLoggedln={setisLoggedln}/>}  />
                     <Route path='/' element={<Home isLoggendIn= {isLoggedIn} /> } />
+                    <Route path='/login' element={<Login isLoggendIn= {isLoggedIn} setisLoggedln={setisLoggedln}/>}  />
                     <Route path='/profile' element={<Profile isLoggendIn= {isLoggedIn} />} />
                 </Routes>
             </BrowserRouter>
