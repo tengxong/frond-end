@@ -107,7 +107,7 @@ export default function Profile(props) {
       console.log(res.data)
     })
   }
-  if (props.isLoggedIn) {
+  if (!props.isLoggedIn) {
 
     return (
       <Box>
