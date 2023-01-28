@@ -11,7 +11,7 @@ const [isLoggedIn,setisLoggedln] = React.useState(false)
 
   useEffect(() =>{
     axios({
-          url:"http://localhost:3000/isloggedIn",
+          url:window.$api +"/isloggedIn",
           method:'post',
           withCredentials: true
     }).then(res =>{
